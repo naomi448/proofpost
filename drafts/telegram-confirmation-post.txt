@@ -1,0 +1,17 @@
+TELEGRAM CONFIRMATION POST — for the BCH BLAZE channel (t.me/bchblaze)
+Yan posts this himself (organizers require the project to confirm it's real).
+Replace the two [BRACKETED] parts first. Keep it as one message.
+═══════════════════════════════════════════════════════════════════════════
+
+🔥 BCH BLAZE 2026 — project confirmation 🔥
+
+Project: ProofPost 📮
+Team: listy (solo)
+
+ProofPost stamps a short message permanently onto the Bitcoin Cash MAINNET in an OP_RETURN transaction — you get a real, clickable txid back in seconds, and a live feed reads the stamps back from the chain. Every stamp costs ~500 sats. No accounts, no backend, no smart contracts: just BCH doing what BCH does best.
+
+Try it live: [PASTE THE LIVE DEMO URL HERE]
+Code: [PASTE THE GITHUB REPO URL HERE]
+BUIDL on DoraHacks: ProofPost
+
+Built during BCH BLAZE 2026. Happy to answer questions! 🙏

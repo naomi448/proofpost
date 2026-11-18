@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ProofPost — Stamp it on Bitcoin Cash, forever</title>
+    <meta
+      name="description"
+      content="ProofPost stamps your message permanently onto the Bitcoin Cash mainnet in an OP_RETURN transaction. Real txid in seconds, for a fraction of a cent."
+    />
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🔥</text></svg>" />
+  </head>
+  <body>
+    <!-- ══════════════════════════════════════════════════════════════════
+         BCH BLAZE 2026 — REQUIRED TOP-OF-PAGE BANNER
+         (1) Widget Factory slides  → BANNER_LINKS.slides in src/config.ts
+             TODO(parent): replace the placeholder href with the real
+             Google Slides link before submitting.
+         (2) Project GitHub repo    → BANNER_LINKS.repo in src/config.ts
+             TODO(parent): replace the placeholder href with the real
+             repo URL before submitting.
+         (3) CashTokens address for EMBER2026 votes → real, filled by JS
+             from DEMO_ADDRESSES in src/config.ts.
+         ══════════════════════════════════════════════════════════════════ -->
+    <div class="blaze-banner" role="banner">
+      <span class="blaze-banner__label">🔥 Built for <strong>BCH BLAZE 2026</strong></span>
+      <nav class="blaze-banner__links">
+        <a id="banner-slides" href="#" target="_blank" rel="noopener">📊 Presentation</a>
+        <a id="banner-repo" href="#" target="_blank" rel="noopener">💻 GitHub repo</a>
+        <span class="blaze-banner__vote">
+          🗳️ Vote EMBER2026 → send to
+          <code id="banner-token-address" title="CashTokens address for EMBER2026 votes">…</code>
+          <button id="banner-copy-token" class="mini-btn" type="button">copy</button>
+        </span>
+      </nav>
+    </div>
+
+    <main class="page">
+      <header class="hero">
+        <h1>📮 ProofPost</h1>
+        <p class="tagline">
+          Stamp a message <strong>permanently onto the Bitcoin Cash mainnet</strong> —
+          sealed in an OP_RETURN transaction, with a real txid in seconds,
+          for a fee of a fraction of a cent.
+        </p>
+        <p class="network-line">
+          Network: <span id="network-badge" class="badge">…</span>
+          <span class="dot">·</span> No account. No sign-up. It just works.
+        </p>
+      </header>
+
+      <section class="card" id="wallet-card">
+        <h2>Demo wallet</h2>
+        <p class="muted">
+          Stamps are paid from a dedicated demo wallet (dust balance only, by design).
+        </p>
+        <div class="wallet-row">
+          <canvas id="fund-qr" width="132" height="132" aria-label="QR code of the demo wallet address"></canvas>
+          <div class="wallet-meta">
+            <div class="addr-line">
+              <code id="demo-address">loading…</code>
+              <button id="copy-address" class="mini-btn" type="button">copy</button>
+            </div>
+            <p class="balance-line">
+              Balance: <strong id="demo-balance">…</strong>
+              <button id="refresh-balance" class="mini-btn" type="button">↻ refresh</button>
+            </p>
+            <p id="funding-note" class="funding-note" hidden>
+              ⏳ <strong>Demo wallet awaiting funds.</strong> Send a little BCH
+              (e.g. 0.0005 BCH) to the address above and this page comes alive —
+              each stamp costs only ~500 sats in fees.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section class="card" id="stamp-card">
+        <h2>✍️ Stamp a message</h2>
+        <textarea
+          id="message-input"
+          rows="3"
+          maxlength="180"
+          placeholder="e.g. Alice ❤ Bob — engaged, 19 Nov 2026"
+        ></textarea>
+        <div class="stamp-row">
+          <span id="char-counter" class="muted">0 / 180</span>
+          <button id="stamp-button" class="primary-btn" type="button">Stamp it on-chain 🔥</button>
+        </div>
+        <p id="stamp-status" class="status" role="status"></p>
+        <p id="stamp-result" class="result" hidden>
+          ✅ Stamped forever! Transaction:
+          <a id="stamp-tx-link" href="#" target="_blank" rel="noopener"><code id="stamp-txid"></code></a>
+        </p>
+      </section>
+
+      <section class="card" id="feed-card">
+        <h2>📜 Recent stamps on-chain</h2>
+        <p id="feed-status" class="muted">Loading the latest stamps…</p>
+        <ul id="feed-list" class="feed-list"></ul>
+        <button id="refresh-feed" class="mini-btn" type="button">↻ refresh feed</button>
+      </section>
+
+      <section class="card" id="connect-card">
+        <h2>🔗 Connect your wallet <span class="muted">(WizardConnect)</span></h2>
+        <p class="muted">
+          Connect your own BCH wallet with WizardConnect (Paytaca mobile) and,
+          if you like, tip the demo wallet 0.0001 BCH so the stamps keep flowing.
+          Your keys never leave your wallet — you approve every signature.
+        </p>
+        <div class="connect-row">
+          <button id="connect-button" class="primary-btn" type="button">Connect wallet</button>
+          <button id="tip-button" class="primary-btn alt" type="button" disabled>Tip 0.0001 BCH</button>
+        </div>
+        <p id="connect-status" class="status" role="status">Not connected.</p>
+        <p id="tip-result" class="result" hidden>
+          🙏 Thank you! Tip transaction:
+          <a id="tip-tx-link" href="#" target="_blank" rel="noopener"><code id="tip-txid"></code></a>
+        </p>
+      </section>
+
+      <footer class="footer muted">
+        <p>
+          How it works: your message goes into an <code>OP_RETURN</code> output
+          (<code>PPST</code> protocol id + your text) of a real Bitcoin Cash mainnet
+          transaction, paid from the demo wallet for ~500 sats. Anyone can read it
+          back from the chain — that's exactly what the feed above does.
+        </p>
+        <p>Built during BCH BLAZE 2026 · ProofPost · MIT licensed</p>
+      </footer>
+    </main>
+
+    <!-- WizardConnect QR dialog -->
+    <div id="qr-dialog" class="dialog-backdrop" hidden>
+      <div class="dialog">
+        <h3>Connect with Paytaca</h3>
+        <p class="muted">Scan this WizardConnect code with the Paytaca app:</p>
+        <canvas id="wizard-qr" width="240" height="240"></canvas>
+        <p><code id="wizard-uri" class="uri-text"></code></p>
+        <button id="qr-close" class="mini-btn" type="button">Close</button>
+      </div>
+    </div>
+
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>

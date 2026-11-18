@@ -1,0 +1,32 @@
+{
+  "name": "proofpost",
+  "version": "1.0.0",
+  "description": "ProofPost — stamp a message permanently onto Bitcoin Cash mainnet via OP_RETURN. Built for BCH BLAZE 2026.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "typecheck": "tsc --noEmit",
+    "gen-wallet": "node scripts/gen-wallet.mjs",
+    "verify": "node scripts/verify-opreturn.mjs"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "@bitauth/libauth": "^3.1.0-next.8",
+    "@mem-cash/electrum": "^0.0.11",
+    "@mem-cash/validation": "^0.0.11",
+    "@wizardconnect/core": "^0.2.11",
+    "@wizardconnect/dapp": "^0.2.8",
+    "mainnet-js": "^4.0.0-next.13",
+    "qrcode": "^1.5.4"
+  },
+  "devDependencies": {
+    "@types/qrcode": "^1.5.6",
+    "typescript": "^7.0.2",
+    "vite": "^8.3.8"
+  }
+}

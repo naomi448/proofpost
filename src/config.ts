@@ -54,6 +54,6 @@ export const explorerAddressUrl = (cashaddr: string): string =>
  * address for EMBER2026 votes) is real already: see DEMO_ADDRESSES above.
  */
 export const BANNER_LINKS = {
-  slides: "#TODO-WIDGET-FACTORY-SLIDES-URL",
+  slides: "https://docs.google.com/presentation/d/1z_x1iJTo7Bm7E14xz__Sytuc45eUg3_z9D7dGefbYF0/edit?usp=drivesdk",
   repo: "https://github.com/naomi448/proofpost",
 } as const;
